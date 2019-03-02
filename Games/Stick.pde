@@ -18,10 +18,10 @@ class Stick {
   void update() {
     if (keyPressed) {
       if (keyCode == LEFT && x > 0) {
-        x -= 5;
+        x -= 10;
       }
       if (keyCode == RIGHT && x < width-200) {
-        x +=5;
+        x += 10;
       }
     }
   }

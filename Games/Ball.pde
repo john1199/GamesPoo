@@ -6,7 +6,7 @@ class Ball {
   public Ball() {
     x = width/2;
     y = height/2;
-    speedBallX = 5;
+    speedBallX = 3;
     speedBallY = -3;
   }
   void createBall() {
