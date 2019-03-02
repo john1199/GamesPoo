@@ -1,15 +1,16 @@
 Ball ball;
+Block block;
 Stick stick;
 void setup() {
-  //size(500,600);
   fullScreen();
   ball = new Ball();
   stick = new Stick();
+  block = new Block(15, 8);
 }
 void draw() {
   background(155);
   ball.drawBall();
   stick.drawStick();
   stick.update();
-  //print(width);
+  block.drawBlock();
 }

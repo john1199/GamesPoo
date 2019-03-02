@@ -7,16 +7,15 @@ class Stick {
     x = 680;
     y = height-40;
   }
-  void createBall() {
+  void createStick() {
     fill(0);
     rect(x, y, ancho, largo);
   }
   void drawStick() {
-    createBall();
+    createStick();
     update();
   }
   void update() {
-    print(x);
     if (keyPressed) {
       if (keyCode == LEFT && x > 0) {
         x -= 5;
