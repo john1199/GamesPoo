@@ -25,8 +25,9 @@ class Ball {
     if (x>width || x<0) {
       speedBallX = -speedBallX;
     }
-    if(y < 0 || y > height){
+    if(y < 0 ){
       speedBallY = -speedBallY;
     }
   }
+      
 }
