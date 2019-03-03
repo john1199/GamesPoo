@@ -3,9 +3,9 @@ class Paddle {
 
   public Paddle() {
     ancho = 15;
-    largo = 200;
+    largo = width/6;
     x = (width/2)-(ancho/2);
-    y = height-40;
+    y = height-100;
   }
   void createPaddle() {
     fill(random(255),random(255),random(255));

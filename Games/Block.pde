@@ -24,12 +24,18 @@ class Block {
     int ballPositionY = ball.y;
     int blockPositionX = block.x;
     int blockPositionY = block.y;
-    if(ballPositionX > blockPositionX+4 && ballPositionX < blockPositionX+76 && ballPositionY > blockPositionY && ballPositionY < blockPositionY+20){
-    
+    if (ballPositionX > blockPositionX+5 && ballPositionX < blockPositionX+185 && ballPositionY > blockPositionY && ballPositionY < blockPositionY+10) {
+      block.status  = false;
+      ball.speedBallX = -ball.speedBallX;
     }
     if ((ballPositionX >  blockPositionX-8 && ballPositionX <  blockPositionX) || (ballPositionX >  blockPositionX+208 && ballPositionX <  blockPositionX+205) && (ballPositionY > blockPositionY &&  ballPositionY <  blockPositionY+10) && block.status == true) {
-      ball.speedBallX = -ball.speedBallX;
       block.status  = false;
+      ball.speedBallY = -ball.speedBallY;
+    }
+    if (((ballPositionX > (blockPositionX-1) && ballPositionX <(blockPositionX+5)) || (ballPositionX>(blockPositionX+295) && ballPositionX <(blockPositionX+201))) && ballPositionY >blockPositionY && ballPositionY <(blockPositionY+20)) {
+      block.status  = false;
+      ball.speedBallX = -ball.speedBallX;
+      ball.speedBallY = -ball.speedBallY;
     }
   }
   //void drawBlock() {

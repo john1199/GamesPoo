@@ -1,4 +1,4 @@
-class BrakeDown {
+class BrakeDown extends StatusGame {
   Ball ball;
   Block[][] blockArray;
   Paddle paddle;
@@ -16,11 +16,38 @@ class BrakeDown {
     blockArray = new Block[rows][columns];
     init();
   }
+  @Override
+    void displayScore() {
+    fill(255);
+    textSize(30);
+    textAlign(RIGHT);
+    text("Score", 105 ,height-30);
+    textAlign(LEFT);
+    text(score, 115, height-30);
+    // Display level
+    textAlign(RIGHT);
+    text("Level", width-80, height-30);
+    textAlign(LEFT);
+    text(level(), width-60, height-30);
+  }
+  @Override
+    void loser() {
+    if (ball.y > height) {
+      textSize(40);
+      textAlign(CENTER);
+      text("Game Over", (width/2)-(paddle.ancho/2), height/2);
+    }
+  }
+  @Override
+    void restart() {
+  }
   void gamePlay() {
     ball.drawBall();
     paddle.drawPaddle();
     paddle.checkCollides(ball);
     drawBlocks();
+    loser();
+    displayScore();
   }
   int update(int y) {
     return y +=30;
@@ -44,7 +71,7 @@ class BrakeDown {
     for (int i = 0; i<rows; i++) {
       for (int j = 0; j<columns; j++) {
         fill(blockArray[i][j].c);
-        blockArray[i][j].checkCollides(blockArray[i][j],ball);
+        // blockArray[i][j].checkCollides(blockArray[i][j], ball);
         if (j == 0 && blockArray[i][j].status == true && blockArray[i][j].y < height/2)
           rect(blockArray[i][j].x, blockArray[i][j].y, blockArray[i][j].largo, blockArray[i][j].ancho);
         else if ( j > 0 && blockArray[i][j].status == true && blockArray[i][j].y < height/2)

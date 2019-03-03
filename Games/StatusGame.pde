@@ -1,6 +1,7 @@
 abstract class StatusGame{
   boolean restart;
   int score,level;
+  
   public StatusGame(){
    restart = false;
    score  = 0;
@@ -12,7 +13,8 @@ abstract class StatusGame{
   int level(){
     return 1;
   }
-  
+  abstract void displayScore();
+  abstract void loser();
   abstract void restart();
   
 }
