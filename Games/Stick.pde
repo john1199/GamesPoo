@@ -2,14 +2,14 @@ class Stick {
   int ancho, largo, x, y;
 
   public Stick() {
-    ancho = 200;
-    largo = 30;
-    x = 680;
+    ancho = 15;
+    largo = 200;
+    x = (width/2)-(ancho/2);
     y = height-40;
   }
   void createStick() {
-    fill(0);
-    rect(x, y, ancho, largo);
+    fill(random(255),random(255),random(255));
+    rect(x, y, largo, ancho);
   }
   void drawStick() {
     createStick();

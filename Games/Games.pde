@@ -1,7 +1,8 @@
 BrakeDown brakeDown;
 void setup() {
-  fullScreen();
-  brakeDown = new BrakeDown(10,8);
+  //fullScreen();
+  size(500,650);
+  brakeDown = new BrakeDown(20,5);
 }
 void draw() {
   background(155);

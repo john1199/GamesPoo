@@ -1,18 +1,12 @@
 class Block {
   int x, y, ancho, largo;
-  int numBlocksX, numBlocksY;
   boolean status;
+  color c;
   
   public Block() {
     status = true;
-    x = 0;
-    ancho = 20;
-  }
-  
-  void createBlocks(int x, int y, int largo, int ancho) {
-    //Draw one
-    status = true;
-    rect(x, y, largo, ancho);
+    ancho = 10;
+    c = color(random(255),random(255),random(255));
   }
 
   //void drawBlock() {
