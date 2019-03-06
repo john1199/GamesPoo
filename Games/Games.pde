@@ -1,10 +1,13 @@
 BrakeDown brakeDown;
+Pong pong;
 void setup() {
   fullScreen();
-  //size(500,650);
-  brakeDown = new BrakeDown(12,7);
+ //size(580,400);
+  //brakeDown = new BrakeDown(8,6);
+  pong = new Pong();
 }
 void draw() {
   background(155);
-  brakeDown.gamePlay();
+  //brakeDown.gamePlay();
+  pong.gamePlay();
 }

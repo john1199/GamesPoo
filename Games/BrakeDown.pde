@@ -16,12 +16,13 @@ class BrakeDown extends StatusGame {
     blockArray = new Block[rows][columns];
     init();
   }
+
   @Override
     void displayScore() {
     fill(255);
     textSize(30);
     textAlign(RIGHT);
-    text("Score", 105 ,height-30);
+    text("Score", 105, height-30);
     textAlign(LEFT);
     text(score, 115, height-30);
     // Display level
@@ -35,22 +36,24 @@ class BrakeDown extends StatusGame {
     if (ball.y > height) {
       textSize(40);
       textAlign(CENTER);
-      text("Game Over", (width/2)-(paddle.ancho/2), height/2);
+      text("Game Over", (width/2)-(paddle.largo/2), height/2);
     }
   }
   @Override
     void restart() {
   }
-  void gamePlay() {
+  @Override
+    void gamePlay() {
     ball.drawBall();
     paddle.drawPaddle();
+    paddle.update(37,39,'x');
     paddle.checkCollides(ball);
     drawBlocks();
     loser();
     displayScore();
   }
   int update(int y) {
-    return y +=30;
+    return y +=40;
   }
   void init() {
     int largo = (width)/columns;
@@ -71,11 +74,13 @@ class BrakeDown extends StatusGame {
     for (int i = 0; i<rows; i++) {
       for (int j = 0; j<columns; j++) {
         fill(blockArray[i][j].c);
-        // blockArray[i][j].checkCollides(blockArray[i][j], ball);
-        if (j == 0 && blockArray[i][j].status == true && blockArray[i][j].y < height/2)
-          rect(blockArray[i][j].x, blockArray[i][j].y, blockArray[i][j].largo, blockArray[i][j].ancho);
-        else if ( j > 0 && blockArray[i][j].status == true && blockArray[i][j].y < height/2)
-          rect(blockArray[i][j].x, blockArray[i][j].y, blockArray[i][j].largo, blockArray[i][j].ancho);
+        if (blockArray[i][j].status == true) {
+          blockArray[i][j].checkCollides(blockArray[i][j], ball);
+          if (j == 0 && blockArray[i][j].y < height/2)
+            rect(blockArray[i][j].x, blockArray[i][j].y, blockArray[i][j].ancho, blockArray[i][j].largo);
+          else if ( j > 0 && blockArray[i][j].y < height/2)
+            rect(blockArray[i][j].x, blockArray[i][j].y, blockArray[i][j].ancho, blockArray[i][j].largo);
+        }
       }
     }
   }
