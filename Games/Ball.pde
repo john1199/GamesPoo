@@ -82,7 +82,7 @@ class Ball {
       c=abs(c);
       if (c>s || c<(3*s)) {
         speedBallY -=1 ;
-      } else if (c>3*s) {
+      } else if (c>3*s) { 
         speedBallY -=2 ;
       }
     } else {

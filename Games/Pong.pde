@@ -6,8 +6,8 @@ class Pong extends StatusGame {
   color c1, c2;
 
   public Pong() {
-    paddle1 = new Paddle(20, height/3, 20, height/5);
-    paddle2 = new Paddle(width-40, height/3, 20, height/5);
+    paddle1 = new Paddle(width/50, (height/2)-(height/10), width/50, height/5);
+    paddle2 = new Paddle(width-(2*width/50),(height/2)-(height/10), width/50, height/5);
     ball = new Ball();
     fuente = loadFont("Fonts/Escapists-48.vlw");
     c1 = color(255, 0, 0);
