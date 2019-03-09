@@ -30,24 +30,4 @@ class Ball {
     x = width/2;
     y = height/2;
   }
-  void update() {
-    x +=speedBallX;
-    y +=speedBallY;
-    if (x>width || x<0) {
-      speedBallX = -speedBallX;
-    }
-    if (y < 0 ) {
-      speedBallY = -speedBallY;
-    }
-  }
-  
-  
-
-  void Score(int n) {
-    if (n==1) {
-      pong.score1+=1;
-    } else {
-      pong.score2+=1;
-    }
-  }
 }

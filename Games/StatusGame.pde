@@ -1,11 +1,8 @@
 abstract class StatusGame{
   boolean restart;
-  int score=0,level;
   
   public StatusGame(){
    restart = false;
-   score  = 0;
-   level  = 1;
   }
   
   abstract void displayScore();

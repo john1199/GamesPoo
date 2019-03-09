@@ -4,7 +4,7 @@ class BrakeDown extends StatusGame {
   Paddle paddle;
   int columns, rows;
   color c;
-  
+
   public BrakeDown() {
     ball = new Ball();
     paddle = new Paddle();
@@ -15,10 +15,17 @@ class BrakeDown extends StatusGame {
     ball = new Ball();
     paddle = new Paddle();
     blockArray = new Block[rows][columns];
-    c = color(205,244,0);
+    c = color(205, 244, 0);
     init();
   }
-
+  @Override
+    void score(int n) {
+    if (n==1) {
+      //score1+=1;
+    } else {
+      //score2+=1;
+    }
+  }
   @Override
     void displayScore() {
     fill(255);
@@ -49,7 +56,7 @@ class BrakeDown extends StatusGame {
     ball.drawBall();
     ball.update();
     paddle.drawPaddle(c);
-    paddle.update(97,100,'x');
+    paddle.update(97, 100, 'x');
     paddle.checkCollides(ball);
     drawBlocks();
     loser();
@@ -74,12 +81,12 @@ class BrakeDown extends StatusGame {
     }
   }
   @Override
-  void update() {  
+    void update() {  
     if (ball.x+ball.radio > width ) {
       ball.speedBallX = -ball.speedBallX;
       ball.x=width-ball.radio;
     }
-    if(ball.x-ball.radio<0){
+    if (ball.x-ball.radio<0) {
       ball.speedBallX = -ball.speedBallX;
       ball.x=ball.radio;
     }
@@ -87,7 +94,7 @@ class BrakeDown extends StatusGame {
       ball.speedBallY = -ball.speedBallY;
       ball.y=ball.radio;
     }
-     if (paddle.y <ball.y+ball.radio &&  paddle.x < ball.x && paddle.x+paddle.ancho>ball.x ) {
+    if (paddle.y <ball.y+ball.radio &&  paddle.x < ball.x && paddle.x+paddle.ancho>ball.x ) {
       ball.speedBallY = -ball.speedBallY;
       velo(paddle.x, paddle.ancho);
       ball.y=paddle.y-ball.radio;
@@ -96,7 +103,7 @@ class BrakeDown extends StatusGame {
     ball.y +=ball.speedBallY;
   }
   @Override
-  void velo(int a, int b){
+    void velo(int a, int b) {
     int c = ball.x-(a+(b/2));
     int s=b/10;
     if (c<0) {
@@ -115,7 +122,7 @@ class BrakeDown extends StatusGame {
       }
     }
   }
-  
+
   void drawBlocks() {
     for (int i = 0; i<rows; i++) {
       for (int j = 0; j<columns; j++) {
