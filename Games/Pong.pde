@@ -13,9 +13,10 @@ class Pong extends StatusGame {
     c1 = color(255, 0, 0);
     c2 = color(0, 255, 0);
   }
+  
+  @Override
   void gamePlay() {
-    displayScore(); 
-    noFill();
+    displayScore();
     paddle1.drawPaddle(c1);
     paddle2.drawPaddle(c2);   
     paddle1.update(119, 115, 'y');
@@ -23,6 +24,8 @@ class Pong extends StatusGame {
     ball.drawBall();
     ball.update(paddle1, paddle2);
   }
+  
+  @Override
   void displayScore() {
     textFont(fuente);
     textSize(60);
@@ -33,8 +36,12 @@ class Pong extends StatusGame {
     text(score2, (width/2)+40, height/6);
     noFill();
   }
+  
+  @Override
   void loser() {
   }
+  
+  @Override
   void restart() {
   }
 }

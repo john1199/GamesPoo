@@ -43,14 +43,9 @@ class Paddle {
       }
     }
   }
-  void checkCollides(Ball ball) {
-    int ballPositionX = ball.x;
-    int ballPositionY = ball.y;
-    if ( x < ballPositionX && (x+ancho) > ballPositionX && y < ballPositionY && y+largo > ballPositionY) {
-      ball.speedBallY = -ball.speedBallY;
+    void checkCollides(Ball ball) {
+      if (y < ball.y+ball.radio &&  x < ball.x && (x+ancho)>ball.x ) {
+        ball.speedBallY = -ball.speedBallY;
+      }
     }
-    //if ( ballPositionX > (y-ancho)+3 && ballPositionX < (y-ancho)-3 && ballPositionX > ((x+largo)-ancho)-3 && ballPositionX < ((x+largo)-ancho)-3){
-    //  ball.speedBallY = -ball.speedBallY;
-    //}
   }
-}

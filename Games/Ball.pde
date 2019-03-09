@@ -49,14 +49,14 @@ class Ball {
       speedBallY = -1*speedBallY;
       y=radio;
     }
-    if (x -radio < paddle.x + paddle.ancho && y >= paddle.y && y <= paddle.y+paddle.largo) {
+    if (x -radio < paddle.x + paddle.ancho && y > paddle.y && y <paddle.y+paddle.largo) {
       speedBallX *= -1;
       speedBallX = (speedBallX-speedInit>radio)? speedBallX : speedBallX+1 ;
       veloy(paddle.y, paddle.largo);
       x= paddle.x + paddle.ancho+radio;
     }
 
-    if (x + radio > paddle2.x && y >= paddle2.y && y <= paddle2.y + paddle2.largo) {
+    if (x + radio > paddle2.x && y > paddle2.y && y < paddle2.y + paddle2.largo) {
       speedBallX *= -1;
       speedBallX = (speedBallX+speedInit<(-1*radio))? speedBallX : speedBallX-1 ;
       veloy(paddle2.y, paddle2.largo);
