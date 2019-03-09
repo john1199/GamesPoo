@@ -39,11 +39,9 @@ class Paddle {
     } else if (var == 'y') {
       if (keyPressed) {
         if (keyCode == tecla1 && y > 0 || key == tecla1 && y > 0) {
-          println(y);
           y -= 10;
         }
         if (key == tecla2 && y < height-largo || keyCode == tecla2 && y < height-largo) {
-          println(y);
           y += 10;
         }
       }

@@ -45,6 +45,7 @@ class BrakeDown extends StatusGame {
   @Override
     void gamePlay() {
     ball.drawBall();
+    ball.update();
     paddle.drawPaddle();
     paddle.update(37,39,'x');
     paddle.checkCollides(ball);
