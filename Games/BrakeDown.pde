@@ -73,6 +73,49 @@ class BrakeDown extends StatusGame {
       }
     }
   }
+  @Override
+  void update() {  
+    if (ball.x+ball.radio > width ) {
+      ball.speedBallX = -ball.speedBallX;
+      ball.x=width-ball.radio;
+    }
+    if(ball.x-ball.radio<0){
+      ball.speedBallX = -ball.speedBallX;
+      ball.x=ball.radio;
+    }
+    if (ball.y -ball.radio< 0 ) {
+      ball.speedBallY = -ball.speedBallY;
+      ball.y=ball.radio;
+    }
+     if (paddle.y <ball.y+ball.radio &&  paddle.x < ball.x && paddle.x+paddle.ancho>ball.x ) {
+      ball.speedBallY = -ball.speedBallY;
+      velo(paddle.x, paddle.ancho);
+      ball.y=paddle.y-ball.radio;
+    }    
+    ball.x +=ball.speedBallX;
+    ball.y +=ball.speedBallY;
+  }
+  @Override
+  void velo(int a, int b){
+    int c = ball.x-(a+(b/2));
+    int s=b/10;
+    if (c<0) {
+      c=abs(c);
+      if (c>s || c<(3*s)) {
+        ball.speedBallX -=1 ;
+      } else if (c>3*s) {
+        ball.speedBallX -=2 ;
+      }
+    } else {
+      if (c>s || c<3*s) {
+        ball.speedBallX +=1 ;
+      }
+      if (c>3*s) {
+        ball.speedBallX +=2 ;
+      }
+    }
+  }
+  
   void drawBlocks() {
     for (int i = 0; i<rows; i++) {
       for (int j = 0; j<columns; j++) {
