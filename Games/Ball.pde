@@ -1,16 +1,15 @@
 class Ball {
-  int radio = 5;
+  int radio;
   int x, y;
-  float speedBallY, speedBallX;
-  boolean space = true;
+  float speedBallY, speedBallX, speedInit;
+  //boolean space = true;
 
   public Ball() {
-    x = width/2;
-    y = height/2;
-    speedBallX = random(3, 4);
-    speedBallY = random(-3, -4);
+    init();
+    radio = r();
+    speedInit=speedBallX;
   }
-  
+
   void createBall() {
     ellipseMode(RADIUS);
     fill(255);//random(255),random(255),random(255));
@@ -18,13 +17,18 @@ class Ball {
   }
   void drawBall() {
     createBall();
-    //if (space) {
-    //  createBall();
-    //  update();
-    //}
-    //if (key == BACKSPACE) {
-    //  space = !space;
-    //}
+  }
+
+  int r() {
+    int s;
+    s = (height>width)? width/30 : height/30;
+    return s;
+  }
+  void init() {
+    speedBallX = width/450;
+    speedBallY =1;
+    x = width/2;
+    y = height/2;
   }
   void update() {
     x +=speedBallX;
@@ -36,32 +40,66 @@ class Ball {
       speedBallY = -speedBallY;
     }
   }
-  void rebote(Paddle paddle,Paddle paddle2){
-    //ellipse(h,k , d,d);
-    
-    if (x <= (radio/2)+ paddle.x || x >= paddle2.x){
-      x = width / 2;
-      y = height / 2;
-      if (speedBallX < 0){
-        //p2++;puntaje aumenta
-        speedBallX *= -1;
-      } else {
-        //p1++; puntaje aumenta
-        speedBallX *= -1;
+  void update(Paddle paddle, Paddle paddle2) {
+    if (y + radio > height) {
+      speedBallY = -1*speedBallY;
+      y=height-radio;
+    }
+    if (y - radio < 0) {
+      speedBallY = -1*speedBallY;
+      y=radio;
+    }
+    if (x -radio < paddle.x + paddle.ancho && y >= paddle.y && y <= paddle.y+paddle.largo) {
+      speedBallX *= -1;
+      speedBallX = (speedBallX-speedInit>radio)? speedBallX : speedBallX+1 ;
+      veloy(paddle.y, paddle.largo);
+      x= paddle.x + paddle.ancho+radio;
+    }
+
+    if (x + radio > paddle2.x && y >= paddle2.y && y <= paddle2.y + paddle2.largo) {
+      speedBallX *= -1;
+      speedBallX = (speedBallX+speedInit<(-1*radio))? speedBallX : speedBallX-1 ;
+      veloy(paddle2.y, paddle2.largo);
+      x= paddle2.x-radio;
+    }
+    if (x+radio < paddle.x+paddle.ancho || x-radio > paddle2.x) {
+      int s;
+      s =(speedBallX>0)? 1 : 0;
+      init();
+      Score(s);
+      speedBallX = (s==1)?speedBallX : -1*speedBallX;
+      int j= millis();
+      while (millis()<j+800) {
       }
     }
-    if (x <= (radio/2) + (paddle.x + paddle.ancho) && y+(radio/2) >= paddle.y && y-(radio/2) <= paddle.y+paddle.largo){
-      speedBallX *= -1;
-    }
-    
-    if (x >= paddle2.x-(radio/2) && y+(radio/2) >= paddle2.y && y-(radio/2) <= paddle2.y + paddle2.largo){
-      speedBallX *= -1;
-    }
-    
-    if (y >= height-(radio/2) || y <= radio/2){
-      speedBallY *= -1;
-    }
     x += speedBallX;
-    y += speedBallY;    
-}
+    y += speedBallY;
+  }
+  void veloy(int a, int b) {
+    int c = y-(a+(b/2));
+    int s=b/10;
+    if (c<0) {
+      c=abs(c);
+      if (c>s || c<(3*s)) {
+        speedBallY -=1 ;
+      } else if (c>3*s) {
+        speedBallY -=2 ;
+      }
+    } else {
+      if (c>s || c<3*s) {
+        speedBallY +=1 ;
+      }
+      if (c>3*s) {
+        speedBallY +=2 ;
+      }
+    }
+  }
+
+  void Score(int n) {
+    if (n==1) {
+      pong.score1+=1;
+    } else {
+      pong.score2+=1;
+    }
+  }
 }

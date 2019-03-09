@@ -2,29 +2,36 @@ class Pong extends StatusGame {
   Paddle paddle1, paddle2;
   Ball ball;
   PFont fuente;
+  int score1, score2;
+  color c1, c2;
 
   public Pong() {
     paddle1 = new Paddle(20, height/3, 20, height/5);
     paddle2 = new Paddle(width-40, height/3, 20, height/5);
     ball = new Ball();
     fuente = loadFont("Fonts/Escapists-48.vlw");
+    c1 = color(255, 0, 0);
+    c2 = color(0, 255, 0);
   }
   void gamePlay() {
     displayScore(); 
     noFill();
-    paddle1.drawPaddle();
-    paddle2.drawPaddle();   
+    paddle1.drawPaddle(c1);
+    paddle2.drawPaddle(c2);   
     paddle1.update(119, 115, 'y');
-    paddle2.update(38, 40, 'y');
+    paddle2.update(111, 108, 'y');
     ball.drawBall();
-    ball.rebote(paddle1,paddle2);
+    ball.update(paddle1, paddle2);
   }
   void displayScore() {
     textFont(fuente);
     textSize(60);
-    text(score, (width/2)-50, height/6);
     text("|", (width/2), height/6);
-    text(score, (width/2)+40,height/6);
+    fill(255, 0, 0);
+    text(score1, (width/2)-50, height/6);
+    fill(0, 255, 0);
+    text(score2, (width/2)+40, height/6);
+    noFill();
   }
   void loser() {
   }

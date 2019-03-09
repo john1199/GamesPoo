@@ -1,14 +1,12 @@
 //sprites
 class Paddle {
   int ancho, largo, x, y;
-  color c;
-  
+
   public Paddle() {
     largo = height/20;
     ancho= width/5;
     x = (width/2)-(ancho/2);
     y = height-100;
-    c = color(random(255), random(255), random(255));
   }
   public Paddle(int _x, int _y, int _ancho, int _largo) {
     ancho = _ancho;
@@ -17,32 +15,30 @@ class Paddle {
     y = _y;
   }
   void createPaddle() {
-    fill(c);
     rect(x, y, ancho, largo);
   }
-  void drawPaddle() {
+  void drawPaddle(color n) {
+    fill(n);
     createPaddle();
-    //update();
   }
-
   void update(int tecla1, int tecla2, char var) {
-
-    if (var == 'x') {
+    int v=height/100;
+    if (var == 'x') {      
       if (keyPressed) {
-        if (keyCode == tecla1 && x > 0) {
-          x -= 10;
-        }
-        if (keyCode == tecla2 && x < width-ancho) {
-          x += 10;
+        if (k == tecla1 && x > 0) {
+          x-=v;
+        }  
+        if (k == tecla2 && x < width-ancho) {
+          x+=v;
         }
       }
     } else if (var == 'y') {
       if (keyPressed) {
-        if (keyCode == tecla1 && y > 0 || key == tecla1 && y > 0) {
-          y -= 10;
+        if (k == tecla1 && y > 0 ) {
+          y-=v;
         }
-        if (key == tecla2 && y < height-largo || keyCode == tecla2 && y < height-largo) {
-          y += 10;
+        if (k == tecla2 && y < height-largo) {
+          y+=v;
         }
       }
     }

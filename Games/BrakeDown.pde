@@ -3,7 +3,8 @@ class BrakeDown extends StatusGame {
   Block[][] blockArray;
   Paddle paddle;
   int columns, rows;
-
+  color c;
+  
   public BrakeDown() {
     ball = new Ball();
     paddle = new Paddle();
@@ -14,6 +15,7 @@ class BrakeDown extends StatusGame {
     ball = new Ball();
     paddle = new Paddle();
     blockArray = new Block[rows][columns];
+    c = color(205,244,0);
     init();
   }
 
@@ -46,15 +48,15 @@ class BrakeDown extends StatusGame {
     void gamePlay() {
     ball.drawBall();
     ball.update();
-    paddle.drawPaddle();
-    paddle.update(37,39,'x');
+    paddle.drawPaddle(c);
+    paddle.update(97,100,'x');
     paddle.checkCollides(ball);
     drawBlocks();
     loser();
     displayScore();
   }
   int update(int y) {
-    return y +=40;
+    return y +=height/32;
   }
   void init() {
     int largo = (width)/columns;
