@@ -10,9 +10,10 @@ class BrakeDown extends StatusGame {
     paddle = new Paddle();
   }
   public BrakeDown(int _columns, int _rows) {
+    //backIMG = loadImage("Data/background.jpg");
     rows = _rows;
     columns = _columns;
-    ball = new Ball();
+    ball = new Ball(10);
     paddle = new Paddle();
     blockArray = new Block[rows][columns];
     c = color(205, 244, 0);
@@ -33,12 +34,12 @@ class BrakeDown extends StatusGame {
     textAlign(RIGHT);
     text("Score", 105, height-30);
     textAlign(LEFT);
-    text(score, 115, height-30);
+    text("", 115, height-30);
     // Display level
     textAlign(RIGHT);
     text("Level", width-80, height-30);
     textAlign(LEFT);
-    text(level(), width-60, height-30);
+    text("", width-60, height-30);
   }
   @Override
     void loser() {
@@ -53,14 +54,16 @@ class BrakeDown extends StatusGame {
   }
   @Override
     void gamePlay() {
+    //image(backIMG,0,0);  
     ball.drawBall();
-    ball.update();
+    update();
     paddle.drawPaddle(c);
     paddle.update(97, 100, 'x');
     paddle.checkCollides(ball);
     drawBlocks();
     loser();
     displayScore();
+    keyPressed();
   }
   int update(int y) {
     return y +=height/32;
@@ -137,22 +140,9 @@ class BrakeDown extends StatusGame {
       }
     }
   }
-  //void drawBlocks() {
-  //  int largo = (width)/columns;
-  //  int y =30;
-  //  for (int i = 0; i<rows; i++) {
-  //    for (int j = 0; j<columns; j++) {
-  //      fill(blockArray[i][j].c);
-  //      if (j == 0 && blockArray[i][j].status == true && y < height/2)
-  //        rect(5, y, largo-10, blockArray[i][j].ancho);
-  //      else if (blockArray[i][j].status == true && j > 0 && y < height/2)
-  //        rect(largo*j, y, largo-8, blockArray[i][j].ancho);
-  //      else
-  //        break;
-  //    }
-  //    if (y < height/2){
-  //      y = update(y);
-  //    }
-  //  }
-  //}
+  void keyPressed() {
+    if (key == '0') {
+      state = 0;
+    }
+  }
 }

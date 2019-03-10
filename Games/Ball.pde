@@ -6,10 +6,13 @@ class Ball {
 
   public Ball() {
     init();
-    radio = r();
+    radio = radio();
     speedInit=speedBallX;
   }
-
+  public Ball(int _radio){
+    radio = _radio;
+    init();
+  }
   void createBall() {
     ellipseMode(RADIUS);
     fill(255);//random(255),random(255),random(255));
@@ -19,7 +22,7 @@ class Ball {
     createBall();
   }
 
-  int r() {
+  int radio() {
     int s;
     s = (height>width)? width/30 : height/30;
     return s;

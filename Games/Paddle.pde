@@ -3,7 +3,7 @@ class Paddle {
   int ancho, largo, x, y;
 
   public Paddle() {
-    largo = height/20;
+    largo = height/22;
     ancho= width/5;
     x = (width/2)-(ancho/2);
     y = height-100;
