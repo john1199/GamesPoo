@@ -4,7 +4,7 @@ class Paddle {
 
   public Paddle() {
     largo = height/30;
-    ancho= width/5;
+    ancho= width/8;
     x = (width/2)-(ancho/2);
     y = height-100;
   }

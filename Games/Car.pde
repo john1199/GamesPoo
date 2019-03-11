@@ -6,10 +6,11 @@ class Car extends StatusGame {
   int score; //puntos
   Carro carrito;//carrito
   //constructor
-  Car() {
+  public Car() {
     velocidad = -15;
     velocidady = 20;
     carrito = new Carro();
+    k = random(10, 80);
     x = width;
     y = 100;
     k=50;
@@ -22,17 +23,18 @@ class Car extends StatusGame {
   }
   @Override
     void loser() {
-    if (score<0) {
-      text("Game over", (width/2), height/2);
+    if (vivo == false) {
+      text("Game over", (width/2)-((width/2)/4), height/2);
     }
+    //restart();
   }
   //genera las rocas y las mueve
   @Override
     void update() {
     //radio aleatorio
-    k = noise(n) * 100;
+    //k = random(10,80);
     //crea las rocas
-    noStroke();
+    //noStroke();
     fill(180);
     //altua aleatoria
     float p = y + noise(n)*(height-2*k);
@@ -46,47 +48,58 @@ class Car extends StatusGame {
     y += velocidady;
     x += velocidad;
     //genera rocas nuevas
-    if (x-k < 0) {
+    if (x-k < 0 && vivo==true) {
       x = width;
       n += plus;
       score++;
     }
     //choque de las rocas y el auto
     if (carrito.y1 <= p+k && p-k <= carrito.y3+carrito.t && 0 < x && x < carrito.x4+carrito.t) {
-      score*=-1;
+      score = 0;
+      vivo = false;
     }
   }
   @Override
-  void velo(int a,int b){
-    
+    void velo(int a, int b) {
   }
   @Override
-  void restart(){
-    
+    void restart() {
+    carrito.dibujar();
+    loser();
+    update();
+    vivo = true;
   }
   @Override
-  void score(int a){
-    
+    void score(int a) {
   }
   @Override
-  void displayScore(){
-    
+    void displayScore() {
   }
   //junta todo lo del juego
   @Override
     void gamePlay() {
     // el jugador pierde
     // aquí el jugador sigue vivo
-    carrito.dibujar();
-    int i = 0;
-    update();
-    //dificultad dependiente del límite del while (NO TOCAR)
-    while (i<1) {
+    if (vivo) {
+      carrito.dibujar();
+      int i = 0;
       update();
-      i++;
+      //dificultad dependiente del límite del while (NO TOCAR)
+      while (i<1) {
+        update();
+        i++;
+      }
+      //loser();
     }
-    loser();
+
+    keyPressed();
+    loser(); 
     textSize(100);
     text(score, 100, 100);
+  }
+  void keyPressed() {
+    if (key == '0') {
+      state = 0;
+    }
   }
 }
