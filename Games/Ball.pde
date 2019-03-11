@@ -6,12 +6,14 @@ class Ball {
 
   public Ball() {
     init();
+    speedBallY =1;
     radio = radio();
     speedInit=speedBallX;
   }
   public Ball(int _radio){
     radio = _radio;
     init();
+    speedBallY =3; 
   }
   void createBall() {
     ellipseMode(RADIUS);
@@ -29,7 +31,6 @@ class Ball {
   }
   void init() {
     speedBallX = width/450;
-    speedBallY =1;
     x = width/2;
     y = height/2;
   }

@@ -3,7 +3,7 @@ class Paddle {
   int ancho, largo, x, y;
 
   public Paddle() {
-    largo = height/22;
+    largo = height/30;
     ancho= width/5;
     x = (width/2)-(ancho/2);
     y = height-100;
@@ -43,9 +43,5 @@ class Paddle {
       }
     }
   }
-    void checkCollides(Ball ball) {
-      if (y < ball.y+ball.radio &&  x < ball.x && (x+ancho)>ball.x ) {
-        ball.speedBallY = -ball.speedBallY;
-      }
-    }
-  }
+  
+}

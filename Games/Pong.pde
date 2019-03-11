@@ -1,7 +1,6 @@
 class Pong extends StatusGame {
   Paddle paddle1, paddle2;
   Ball ball;
-  PFont fuente;
   int score1, score2;
   color c1, c2;
 
@@ -9,7 +8,6 @@ class Pong extends StatusGame {
     paddle1 = new Paddle(width/50, (height/2)-(height/10), width/50, height/5);
     paddle2 = new Paddle(width-(2*width/50), (height/2)-(height/10), width/50, height/5);
     ball = new Ball();
-    fuente = loadFont("Fonts/Escapists-48.vlw");
     c1 = color(255, 0, 0);
     c2 = color(0, 255, 0);
   }
@@ -23,6 +21,8 @@ class Pong extends StatusGame {
     paddle2.update(111, 108, 'y');
     ball.drawBall();
     update();
+    loser();
+    keyPressed(); 
   }
   void update() {
     if (ball.y + ball.radio > height) {
@@ -46,7 +46,7 @@ class Pong extends StatusGame {
       velo(paddle2.y, paddle2.largo);
       ball.x= paddle2.x - ball.radio;
     }
-    if (ball.x+ball.radio < paddle1.x+paddle1.ancho || ball.x-ball.radio > paddle2.x) {
+    if (ball.x+ball.radio < paddle1.x+paddle1.ancho || ball.x-ball.radio > paddle2.x && restart ==false) {
       int s;
       s =(ball.speedBallX>0)? 1 : 0;
       ball.init();
@@ -80,7 +80,7 @@ class Pong extends StatusGame {
     }
   }
   @Override
-  void score(int n) {
+    void score(int n) {
     if (n==1) {
       score1+=1;
     } else {
@@ -102,9 +102,35 @@ class Pong extends StatusGame {
 
   @Override
     void loser() {
+    if (score1 == 10 || score2 == 10) {
+      textSize(40);
+      textAlign(CENTER);
+      text("Game Over", (width/2), height/2);
+      if (score1 == 10)
+        fill(c1);
+      else if(score2 == 10)
+        fill(c2);
+      text("Win", (width/2), height/2.5);
+      restart = true;
+      if (keyPressed == true) {
+        restart();
+      }
+    }
   }
 
   @Override
     void restart() {
+    paddle1 = new Paddle(width/50, (height/2)-(height/10), width/50, height/5);
+    paddle2 = new Paddle(width-(2*width/50), (height/2)-(height/10), width/50, height/5);
+    ball = new Ball();
+    c1 = color(255, 0, 0);
+    c2 = color(0, 255, 0);
+    score1 =0;
+    score2 =0;
+  }
+  void keyPressed() {
+    if (key == '0') {
+      state = 0;
+    }
   }
 }
