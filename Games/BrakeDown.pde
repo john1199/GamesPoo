@@ -1,6 +1,7 @@
 class BrakeDown extends StatusGame {
   Ball ball;
   Block[][] blockArray;
+  Block block;
   Paddle paddle;
   int columns, rows;
   color c;
@@ -17,6 +18,7 @@ class BrakeDown extends StatusGame {
     columns = _columns;
     ball = new Ball(7);
     paddle = new Paddle();
+    block = new Block();
     blockArray = new Block[rows][columns];
     c = color(205, 244, 0);
     init();
@@ -78,7 +80,7 @@ class BrakeDown extends StatusGame {
     keyPressed();
   }
   int update(int y) {
-    return y +=height/35;
+    return y +=block.largo;
   }
   void init() {
     int largo = (width)/columns;
@@ -86,7 +88,7 @@ class BrakeDown extends StatusGame {
     for (int i = 0; i<rows; i++) {
       for (int j = 0; j<columns; j++) {
         if (j == 0)
-          blockArray[i][j] = new Block(5, y, largo-5);
+          blockArray[i][j] = new Block(5, y, largo);
         else if (j>0)
           blockArray[i][j] = new Block(largo*j, y, largo);
       }

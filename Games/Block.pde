@@ -6,7 +6,7 @@ class Block {
 
   public Block() {
     status = true;
-    largo = 10;
+    largo = 20;
     c = color(random(255), random(255), random(255));
     score =0;
   }
@@ -15,7 +15,7 @@ class Block {
     y = _y;
     ancho = _ancho;
     status = true;
-    largo = 15;
+    largo = 20;
     c = color(random(255), random(255), random(255));
   }
   void drawBlock() {

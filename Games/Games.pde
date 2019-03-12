@@ -9,8 +9,8 @@ int state = 0;
 int k=0;
 
 void setup() { 
-  //size(520, 600);
-  fullScreen();
+  size(520, 600);
+  //fullScreen();
   //backMenu= loadImage("Data/background0.jpg");
   fuente = loadFont("Fonts/Escapists-48.vlw");
   backBrake= loadImage("Data/background.jpg");
